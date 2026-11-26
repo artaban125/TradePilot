@@ -168,6 +168,7 @@ TradePilot/
 ├─ knowledge/              무역 용어사전 · 대응 규칙 · 해설 예시 (YAML)
 ├─ schemas/                추출 JSON 스키마 (공통 · 송장 · 발주서)
 ├─ data/                   데이터 안내 (실제 데이터는 Git에 올리지 않음)
+├─ tools/                  데이터 내려받기·정제 스크립트
 ├─ tests/                  테스트 코드
 ├─ docs/                   기획서 · 계획서 · 설계서 (docs/README.md)
 ├─ members/                팀원별 실험 공간
@@ -179,7 +180,16 @@ TradePilot/
 ```
 
 - 실험·시도는 `members/<본인>/`에서 자유롭게 하고, 검증된 코드만 `backend/`, `frontend/`로 옮깁니다.
-- 데이터셋(약 9~22 GB)과 모델 가중치는 용량 때문에 Git에 올리지 않습니다. 받는 방법은 [`data/README.md`](data/README.md)에 있습니다.
+- 데이터셋과 모델 가중치는 용량 때문에 Git에 올리지 않습니다.
+
+### 데이터 받기
+
+| 데이터 | 용량 | 명령 |
+| --- | --- | --- |
+| 평가셋 (송장 50 + 발주서 50) | 약 34 MB | `pip install gdown` → `python tools/download_data.py` |
+| 정제 데이터셋 (영문 5종 전체) | 약 9 GB | `pip install -r tools/dataset_prep/requirements.txt` → `python tools/dataset_prep/prepare_dataset.py` |
+
+대부분의 작업은 평가셋만으로 충분합니다. 자세한 내용은 [`data/README.md`](data/README.md)를 참고하세요.
 
 ## 7. 일정과 마일스톤
 
