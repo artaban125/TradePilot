@@ -1,0 +1,55 @@
+# ── 비밀 정보 ──
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ── 데이터·모델 (용량 큼, data/README.md 참고) ──
+data/*
+!data/README.md
+!data/eval/
+data/eval/*
+!data/eval/README.md
+*.parquet
+*.safetensors
+*.bin
+*.gguf
+*.pt
+*.pth
+models/
+hf_cache/
+chroma/
+*.sqlite
+*.db
+
+# ── 실행 결과 ──
+results/
+outputs/
+logs/
+*.log
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.venv-*/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ── Node / React ──
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+
+# ── 에디터·OS·도구 ──
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.playwright-mcp/
+.claude/settings.local.json
