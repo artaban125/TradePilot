@@ -16,16 +16,14 @@
 
 ## 방법 1. 평가셋 (구글 드라이브)
 
-> ⏳ **구글 드라이브 링크 준비 중입니다.** 링크가 올라오기 전에는 팀 내부에서 zip 파일을 받아 `--zip` 옵션으로 사용하세요. 팀 GPU 서버에는 평가셋이 이미 있습니다.
-
 ```bash
-pip install gdown
-python tools/download_data.py
+python tools/download_data.py      # 추가 패키지 필요 없음 (약 34 MB)
 ```
 
 - `data/eval/tradepilot_eval_v1/`에 풀립니다.
 - 받은 파일은 SHA-256으로 자동 검증합니다.
-- 자동 다운로드가 안 되면 구글 드라이브 링크(준비 중)에서 직접 받은 뒤 아래처럼 실행합니다.
+- 이미 받아 둔 평가셋이 있으면 건너뜁니다. 다시 받으려면 `--force`를 붙입니다.
+- 자동 다운로드가 안 되면 [구글 드라이브](https://drive.google.com/file/d/17U4-fg56SS-VxMyj3UlgWIHuBW7FSad3/view)에서 직접 받은 뒤 아래처럼 실행합니다.
   ```bash
   python tools/download_data.py --zip 받은파일경로/tradepilot_eval_v1.zip
   ```
@@ -67,7 +65,7 @@ python tools/dataset_prep/prepare_dataset.py --raw data/raw/company_docs_v2 --ou
 git clone https://github.com/artaban125/TradePilot.git && cd TradePilot
 
 # 1) 평가셋 (1분 이내) — 대부분의 실험은 이것만으로 충분
-pip install gdown && python tools/download_data.py
+python tools/download_data.py
 
 # 2) 정제 데이터셋이 꼭 필요할 때만 (약 10분, 디스크 25 GB)
 pip install -r tools/dataset_prep/requirements.txt

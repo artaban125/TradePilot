@@ -186,7 +186,7 @@ TradePilot/
 
 | 데이터 | 용량 | 명령 |
 | --- | --- | --- |
-| 평가셋 (송장 50 + 발주서 50) | 약 34 MB | `pip install gdown` → `python tools/download_data.py` |
+| 평가셋 (송장 50 + 발주서 50) | 약 34 MB | `python tools/download_data.py` |
 | 정제 데이터셋 (영문 5종 전체) | 약 9 GB | `pip install -r tools/dataset_prep/requirements.txt` → `python tools/dataset_prep/prepare_dataset.py` |
 
 대부분의 작업은 평가셋만으로 충분합니다. 자세한 내용은 [`data/README.md`](data/README.md)를 참고하세요.
