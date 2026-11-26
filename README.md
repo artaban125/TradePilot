@@ -92,6 +92,8 @@ flowchart LR
 
 ### 김종호 — Vision · Data
 
+**작업 폴더**: [`members/jongho/`](members/jongho/)
+
 **맡은 일**: 공개·합성 인보이스 데이터셋 구축, Qwen2.5-VL 기반 JSON 파싱과 필드 추출 정확도 검증
 
 | WBS | 작업 | 기간 | 완료 기준 |
@@ -108,6 +110,8 @@ flowchart LR
 
 ### 이규남 — LLM · Backend
 
+**작업 폴더**: [`members/knlee/`](members/knlee/)
+
 **맡은 일**: 무역 용어 프롬프트, LLM 기반 쉬운 해설·업무 체크리스트 생성, FastAPI 백엔드 구축
 
 | WBS | 작업 | 기간 | 완료 기준 |
@@ -121,6 +125,8 @@ flowchart LR
 **검토 담당**: 김종호 님의 VLM 개선 실험, 한병준 님의 프런트엔드
 
 ### 한병준 — LLM · Frontend · PM
+
+**작업 폴더**: [`members/hbj/`](members/hbj/)
 
 **맡은 일**: 문서 업로드 UI, 원문-해설 대조 뷰어, 부서별 체크리스트 화면 구현, 프로젝트 일정·범위 관리
 
@@ -163,11 +169,11 @@ TradePilot/
 ├─ schemas/                추출 JSON 스키마 (공통 · 송장 · 발주서)
 ├─ data/                   데이터 안내 (실제 데이터는 Git에 올리지 않음)
 ├─ tests/                  테스트 코드
-├─ docs/                   기획서 · 계획서 · 설계서 · 근거 자료
+├─ docs/                   기획서 · 계획서 · 설계서 (docs/README.md)
 ├─ members/                팀원별 실험 공간
-│  ├─ kim-jongho/
-│  ├─ lee-kyunam/
-│  └─ han-byeongjun/
+│  ├─ jongho/            김종호
+│  ├─ knlee/             이규남
+│  └─ hbj/               한병준
 ├─ .env.example            환경 변수 예시
 └─ README.md
 ```
