@@ -16,7 +16,7 @@ import argparse, json, math, os, re, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from prompt import PROMPT_VERSION, SCHEMA_PROMPT, TEXT_HINT  # noqa: E402
+from prompt import PROMPTS, TEXT_HINT  # noqa: E402
 
 MODELS = {
     "qwen25vl": {"id": "Qwen/Qwen2.5-VL-7B-Instruct", "revision": None},
@@ -67,7 +67,9 @@ def main():
     ap.add_argument("--max-new-tokens", type=int, default=2000)
     ap.add_argument("--limit", type=int, default=0, help="문서 종류별 최대 건수 (0=전체)")
     ap.add_argument("--dry-run", type=int, default=0, help="N건 입력만 만들어 토큰 수 출력 (모델 로딩 안 함)")
+    ap.add_argument("--prompt", choices=PROMPTS, default="v1", help="프롬프트 버전 (prompt.py PROMPTS)")
     a = ap.parse_args()
+    PROMPT_VERSION, SCHEMA_PROMPT = PROMPTS[a.prompt]
 
     import torch
     from transformers import AutoModelForImageTextToText, AutoProcessor

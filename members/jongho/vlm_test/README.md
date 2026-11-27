@@ -3,7 +3,25 @@
 설계서의 "Vision 비교 후보 InternVL3-8B를 기준선 단계에서 같은 평가셋으로 1회 비교"를 수행한 결과입니다 (W-04).
 이규남 님의 [`members/knlee/vlm_test`](../../knlee/vlm_test/) 기준선과 **같은 프롬프트·같은 해상도·같은 채점 규칙**으로 비교했습니다.
 
-## 결과 요약 (2026-11-26, RTX 4090, bf16, 평가셋 `tradepilot_eval_v1` 송장 50 + 발주서 50)
+## 결과 요약 2: 발행사 전체 (2026-11-27, 평가셋 `tradepilot_eval_v3`, 프롬프트 v2)
+
+발행사 43곳(송장 26, 발주서 17) × 10건, 레이아웃 종류별 4종으로 다시 비교했습니다. 정답은 `gold_printed.json`(인쇄된 값만) 기준입니다.
+
+| 입력 방식 | 송장 Qwen2.5-VL | 송장 InternVL3 | 발주서 Qwen2.5-VL | 발주서 InternVL3 |
+| --- | --- | --- | --- | --- |
+| 스캔 이미지 (`scan`) | 94.3% | **95.5%** | 94.6% | **95.6%** |
+| PDF 이미지 (`pdf`) | 95.0% | **95.4%** | 94.2% | 94.3% |
+| PDF 이미지 + 텍스트 힌트 (`pdf_text`) | 95.7% | **98.4%** | 94.6% | **98.0%** |
+| 완전일치 문서 수 (`pdf_text`) | 85/260 | **151/260** | 72/170 | **115/170** |
+
+- 양식이 다양해지면 **InternVL3가 모든 방식에서 같거나 높습니다.** 문서당 시간도 0.7~0.9초 빠릅니다 (송장 9.6초, 발주서 8.4초, pdf_text).
+- Qwen은 modern·sidebar 레이아웃과 국가 칸(주 약자 출력), 품명(설명 줄까지 포함)에서 많이 틀립니다.
+- v2 프롬프트로 발주서 `instructions` 누락은 대부분 해결됐지만, 송장 `notes` 문장이 `instructions`로 들어가는 부작용이 생겼습니다.
+- JSON 파싱 실패: 2,520건 중 1건 (InternVL3, pdf, 송장)
+- eval_v3에서 v1 프롬프트는 실행하지 않아, 모델 차이와 프롬프트 효과를 나눠 볼 수는 없습니다.
+- 상세: [`report_compare_eval_v3.md`](report_compare_eval_v3.md), 모델별 보고서: `report_<model>_eval_v3_{clean,scan}.md`
+
+## 결과 요약 1: 발행사 1곳 (2026-11-26, RTX 4090, bf16, 평가셋 `tradepilot_eval_v1` 송장 50 + 발주서 50)
 
 | 입력 방식 | 송장 Qwen2.5-VL | 송장 InternVL3 | 발주서 Qwen2.5-VL | 발주서 InternVL3 |
 | --- | --- | --- | --- | --- |
@@ -28,6 +46,7 @@
 - 발주서는 비슷하거나 InternVL3가 약간 앞서지만, **틀리는 칸이 서로 다릅니다.**
 - InternVL3는 0.5~0.9초 빠르고 메모리를 0.8 GB 덜 쓰지만 정확도 차이를 뒤집을 정도는 아닙니다.
 - → **Qwen2.5-VL-7B를 기본 VLM으로 유지**하고, 발주서 약점은 프롬프트 개선(W-05)으로 대응하는 것을 제안합니다.
+- (11.27 추가) 이 판단은 발행사 1곳 결과입니다. 발행사 전체(eval_v3)에서는 InternVL3가 앞서므로 위 "결과 요약 2"를 함께 보세요.
 
 ### 모델별 주요 실패 유형
 
@@ -49,13 +68,16 @@
 
 | 파일 | 내용 |
 | --- | --- |
-| `scripts/prompt.py` | 추출 프롬프트. knlee `eval_vlm.py`(커밋 6f1cba8) 문구를 그대로 고정 (`PROMPT_VERSION`) |
-| `scripts/run_eval.py` | Qwen2.5-VL-7B / InternVL3-8B(-hf) 추출. 입력 방식 `scan`·`pdf`·`pdf_text`, 이어서 실행 가능 |
+| `scripts/prompt.py` | 추출 프롬프트. v1: knlee `eval_vlm.py`(커밋 6f1cba8) 문구 그대로, v2: v1에서 필드 설명·규칙 일부 수정 (`PROMPTS`) |
+| `scripts/run_eval.py` | Qwen2.5-VL-7B / InternVL3-8B(-hf) 추출. 입력 방식 `scan`·`pdf`·`pdf_text`, `--prompt v1|v2`, 이어서 실행 가능 |
 | `scripts/score.py` | knlee `score.py` 사본 + `--gold-file` 옵션 (v2의 `gold_printed.json` 채점용) |
 | `scripts/compare.py` | 두 모델 결과를 한 표로 비교, v2는 발행사(레이아웃)별 정확도도 출력 |
-| `scripts/build_eval_set.py` | 평가셋 v2 생성 (`data/eval/tradepilot_eval_v2`) |
-| `scripts/run_all.sh` | 추출 → 채점 → 비교표 일괄 실행 |
-| `report_*.md` | 이번 실행의 결과 보고서 (results/에서 복사) |
+| `scripts/build_eval_set.py` | 평가셋 생성. 기본은 v2, `--splits`·`--per-company`로 v3 (발행사별 N건) |
+| `scripts/run_all.sh` | eval_v1·v2: 추출 → 채점 → 비교표 일괄 실행 |
+| `scripts/run_v3.sh` | eval_v3: 두 모델 × (clean pdf·pdf_text, scan) 추출 → 채점 |
+| `eval_sets/tradepilot_eval_v3_manifest.jsonl` | eval_v3 문서 목록 830건 (set, type, doc_id, split, company, layout). 데이터 파일은 Git에 올리지 않음 |
+| `eval_sets/tradepilot_eval_v3_summary.json` | eval_v3 구성 요약 (발행사·스캔 프로필별 건수, 인쇄 확인 통계) |
+| `report_*.md` | 실행별 결과 보고서 (results/에서 복사) |
 
 ## 실행 방법
 
@@ -75,6 +97,12 @@ nohup bash $T/scripts/run_all.sh > $T/logs/run_all.log 2>&1 &
 
 # 평가셋 v2 만들기 (data/company_docs_v2_en 필요, 1분 이내, seed 고정 → 같은 300건)
 python $T/scripts/build_eval_set.py
+
+# 평가셋 v3 만들기 (발행사 전체 × 10건, seed 고정 → eval_sets/의 목록과 같은 830건)
+python $T/scripts/build_eval_set.py --out data/eval/tradepilot_eval_v3 \
+       --splits train validation test --per-company 10
+# eval_v3 실행: 두 모델 × v2 프롬프트 (4090에서 약 6시간 30분)
+PROMPT=v2 nohup bash $T/scripts/run_v3.sh > $T/logs/run_v3.log 2>&1 &
 ```
 
 | `run_eval.py` 옵션 | 설명 |

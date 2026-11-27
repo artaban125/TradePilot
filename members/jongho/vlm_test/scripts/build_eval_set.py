@@ -163,11 +163,15 @@ def pick_scans(cands_by_group, quota, rng):
             rng.shuffle(lst)
         profs = sorted(by_prof)
         i = 0
+        picked = set()  # 한 문서가 scan·photo 둘 다 있을 때 두 번 뽑히지 않게 한다
         while q > 0 and any(by_prof.values()):
             p = profs[i % len(profs)]
             if by_prof[p]:
-                chosen.append(by_prof[p].pop())
-                q -= 1
+                row = by_prof[p].pop()
+                if row["doc_id"] not in picked:
+                    picked.add(row["doc_id"])
+                    chosen.append(row)
+                    q -= 1
             i += 1
     return chosen
 
@@ -181,22 +185,27 @@ def main():
     ap.add_argument("--n-scan", type=int, default=50)
     ap.add_argument("--dpi", type=int, default=150)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--splits", nargs="+", default=SPLITS, help="뽑을 split (기본: validation test)")
+    ap.add_argument("--per-company", type=int, default=0,
+                    help="발행사별 N건씩 (clean·scan 각각, 부족하면 있는 만큼). 0이면 --n-clean/--n-scan 균등 배분")
     a = ap.parse_args()
     src, out = Path(a.src), Path(a.out)
     rng = random.Random(a.seed)
     manifest, summary = [], {"created": dt.datetime.now().isoformat(timespec="seconds"),
                              "source": str(src), "seed": a.seed, "dpi": a.dpi,
-                             "criteria": "en, 1-page, validation+test, stratified by issuer layout",
+                             "criteria": f"en, 1-page, {'+'.join(a.splits)}, "
+                                         + (f"{a.per_company} per issuer" if a.per_company
+                                            else "stratified by issuer layout"),
                              "types": {}}
 
     for t in TYPES:
         meta_rows = []
-        for sp in SPLITS:
+        for sp in a.splits:
             meta_rows += pq.read_table(src / "data" / t / f"{sp}.parquet", columns=META_COLS).to_pylist()
         one_page = {r["doc_id"]: r for r in meta_rows if r["pages"] == 1}
 
         scan_rows = []
-        for sp in SPLITS:
+        for sp in a.splits:
             scan_rows += pq.read_table(src / "scans" / t / f"{sp}.parquet",
                                        columns=["doc_id", "split", "page", "profile"]).to_pylist()
         scan_ok = [r for r in scan_rows if r["page"] == 0 and r["doc_id"] in one_page]
@@ -210,7 +219,8 @@ def main():
             groups[g].sort()
             rng.shuffle(groups[g])
             groups[g].sort(key=lambda d: d in scan_docs)       # 스캔 없는 문서가 앞으로
-        q_clean = allocate(groups, a.n_clean)
+        q_clean = ({g: min(a.per_company, len(v)) for g, v in groups.items()} if a.per_company
+                   else allocate(groups, a.n_clean))
         clean_ids = [d for g, q in q_clean.items() for d in groups[g][:q]]
 
         # 2) scan: clean과 겹치지 않는 문서
@@ -220,7 +230,8 @@ def main():
                 sgroups[one_page[r["doc_id"]]["company"]].append(r)
         for g in sgroups:
             sgroups[g].sort(key=lambda r: (r["doc_id"], r["profile"]))
-        q_scan = allocate({g: v for g, v in sgroups.items()}, a.n_scan)
+        q_scan = ({g: min(a.per_company, len({r["doc_id"] for r in v})) for g, v in sgroups.items()}
+                  if a.per_company else allocate({g: v for g, v in sgroups.items()}, a.n_scan))
         scan_pick = pick_scans(sgroups, q_scan, rng)
         scan_ids = [r["doc_id"] for r in scan_pick]
         assert not set(clean_ids) & set(scan_ids)
@@ -228,7 +239,7 @@ def main():
         # 3) 상세 컬럼 읽기 (선택된 문서만)
         need = set(clean_ids) | set(scan_ids)
         full = {}
-        for sp in SPLITS:
+        for sp in a.splits:
             tb = pq.read_table(src / "data" / t / f"{sp}.parquet",
                                columns=["doc_id", "pdf", "extracted_data", "file_content", "options", "boxes"],
                                filters=[("doc_id", "in", list(need))])
@@ -236,7 +247,7 @@ def main():
                 full[r["doc_id"]] = r
         scan_img = {}
         want = {(r["doc_id"], r["profile"]) for r in scan_pick}
-        for sp in SPLITS:
+        for sp in a.splits:
             tb = pq.read_table(src / "scans" / t / f"{sp}.parquet",
                                columns=["doc_id", "page", "profile", "image", "params", "width", "height"],
                                filters=[("doc_id", "in", scan_ids), ("page", "=", 0)])

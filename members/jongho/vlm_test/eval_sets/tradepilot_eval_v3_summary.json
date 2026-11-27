@@ -1,0 +1,638 @@
+{
+ "created": "2026-11-27T10:30:18",
+ "source": "data/company_docs_v2_en",
+ "seed": 42,
+ "dpi": 150,
+ "criteria": "en, 1-page, train+validation+test, 10 per issuer",
+ "types": {
+  "invoice": {
+   "available_1page": 22301,
+   "available_1page_with_scan": 6664,
+   "clean": 260,
+   "scan": 230,
+   "by_set_company_profile": {
+    "clean / atlas-cycles-plc / None": 10,
+    "clean / atlas-records-inc / None": 10,
+    "clean / boreal-audio-plc / None": 10,
+    "clean / boreal-components-co / None": 10,
+    "clean / boreal-wholesale-ltd / None": 10,
+    "clean / cobalt-wholesale-ltd / None": 10,
+    "clean / delta-sports-co-ltd / None": 10,
+    "clean / granite-merchants-llc / None": 10,
+    "clean / harbor-beats-llc / None": 10,
+    "clean / harbor-velo-co / None": 10,
+    "clean / iris-distribution-inc / None": 10,
+    "clean / iris-sports-corp / None": 10,
+    "clean / iris-wheelworks-llc / None": 10,
+    "clean / juniper-bikes-plc / None": 10,
+    "clean / juniper-merchants-inc / None": 10,
+    "clean / keystone-music-co-ltd / None": 10,
+    "clean / lumen-media-corp / None": 10,
+    "clean / meridian-components-co-ltd / None": 10,
+    "clean / quarry-foods-plc / None": 10,
+    "clean / quarry-music-llc / None": 10,
+    "clean / quarry-recordings-plc / None": 10,
+    "clean / summit-partners-ltd / None": 10,
+    "clean / union-foods-corp / None": 10,
+    "clean / union-sound-corp / None": 10,
+    "clean / vantage-outdoor-corp / None": 10,
+    "clean / zenith-audio-plc / None": 10,
+    "scan / atlas-cycles-plc / photo": 5,
+    "scan / atlas-cycles-plc / scan": 5,
+    "scan / atlas-records-inc / photo": 3,
+    "scan / atlas-records-inc / scan": 3,
+    "scan / boreal-audio-plc / photo": 2,
+    "scan / boreal-audio-plc / scan": 3,
+    "scan / boreal-components-co / photo": 5,
+    "scan / boreal-components-co / scan": 5,
+    "scan / boreal-wholesale-ltd / photo": 5,
+    "scan / boreal-wholesale-ltd / scan": 5,
+    "scan / cobalt-wholesale-ltd / photo": 5,
+    "scan / cobalt-wholesale-ltd / scan": 5,
+    "scan / delta-sports-co-ltd / photo": 5,
+    "scan / delta-sports-co-ltd / scan": 5,
+    "scan / granite-merchants-llc / photo": 5,
+    "scan / granite-merchants-llc / scan": 5,
+    "scan / harbor-beats-llc / photo": 2,
+    "scan / harbor-beats-llc / scan": 5,
+    "scan / harbor-velo-co / photo": 5,
+    "scan / harbor-velo-co / scan": 5,
+    "scan / iris-distribution-inc / photo": 5,
+    "scan / iris-distribution-inc / scan": 5,
+    "scan / iris-sports-corp / photo": 5,
+    "scan / iris-sports-corp / scan": 5,
+    "scan / iris-wheelworks-llc / photo": 5,
+    "scan / iris-wheelworks-llc / scan": 5,
+    "scan / juniper-bikes-plc / photo": 5,
+    "scan / juniper-bikes-plc / scan": 5,
+    "scan / juniper-merchants-inc / photo": 5,
+    "scan / juniper-merchants-inc / scan": 5,
+    "scan / keystone-music-co-ltd / photo": 2,
+    "scan / keystone-music-co-ltd / scan": 4,
+    "scan / lumen-media-corp / photo": 1,
+    "scan / lumen-media-corp / scan": 1,
+    "scan / meridian-components-co-ltd / photo": 5,
+    "scan / meridian-components-co-ltd / scan": 5,
+    "scan / quarry-foods-plc / photo": 5,
+    "scan / quarry-foods-plc / scan": 5,
+    "scan / quarry-music-llc / photo": 2,
+    "scan / quarry-music-llc / scan": 7,
+    "scan / quarry-recordings-plc / photo": 5,
+    "scan / quarry-recordings-plc / scan": 5,
+    "scan / summit-partners-ltd / photo": 5,
+    "scan / summit-partners-ltd / scan": 5,
+    "scan / union-foods-corp / photo": 5,
+    "scan / union-foods-corp / scan": 5,
+    "scan / union-sound-corp / photo": 1,
+    "scan / union-sound-corp / scan": 4,
+    "scan / vantage-outdoor-corp / photo": 5,
+    "scan / vantage-outdoor-corp / scan": 5,
+    "scan / zenith-audio-plc / photo": 2,
+    "scan / zenith-audio-plc / scan": 8
+   },
+   "printed_check": {
+    "currency": {
+     "kept": 490
+    },
+    "dates.due_date": {
+     "printed": 169,
+     "not_found": 3,
+     "printed_wrapped": 2
+    },
+    "dates.order_date": {
+     "printed": 215,
+     "not_found": 2,
+     "printed_wrapped": 4
+    },
+    "doc_type": {
+     "kept": 490
+    },
+    "extra.payment_instructions": {
+     "prefix": 50,
+     "not_found": 44,
+     "printed": 80
+    },
+    "extra.payment_terms": {
+     "printed": 490
+    },
+    "issue_date": {
+     "boxed": 490
+    },
+    "items[].description": {
+     "boxed": 1734
+    },
+    "items[].discount_rate": {
+     "printed": 946,
+     "not_found": 788
+    },
+    "items[].extra.category": {
+     "not_found": 1652,
+     "printed": 82
+    },
+    "items[].extra.details": {
+     "printed": 492
+    },
+    "items[].extra.weight": {
+     "not_found": 123
+    },
+    "items[].line_total": {
+     "boxed": 1734
+    },
+    "items[].quantity": {
+     "printed": 1734
+    },
+    "items[].sku": {
+     "printed": 1686,
+     "not_found": 48
+    },
+    "items[].tax_rate": {
+     "printed": 1734
+    },
+    "items[].unit": {
+     "printed": 313,
+     "not_found": 1421
+    },
+    "items[].unit_price": {
+     "printed": 1734
+    },
+    "notes": {
+     "not_found": 260,
+     "boxed": 226,
+     "printed": 4
+    },
+    "number": {
+     "boxed": 490
+    },
+    "parties.bill_to.address.city": {
+     "printed": 484
+    },
+    "parties.bill_to.address.country": {
+     "printed": 484
+    },
+    "parties.bill_to.address.line1": {
+     "printed": 483,
+     "not_found": 1
+    },
+    "parties.bill_to.address.line2": {
+     "printed": 2
+    },
+    "parties.bill_to.address.postal_code": {
+     "printed": 477
+    },
+    "parties.bill_to.address.region": {
+     "printed": 207
+    },
+    "parties.bill_to.code": {
+     "printed": 490
+    },
+    "parties.bill_to.contact": {
+     "printed": 131,
+     "not_found": 64
+    },
+    "parties.bill_to.email": {
+     "not_found": 316
+    },
+    "parties.bill_to.fax": {
+     "not_found": 111,
+     "printed": 2
+    },
+    "parties.bill_to.name": {
+     "boxed": 490
+    },
+    "parties.bill_to.phone": {
+     "not_found": 155,
+     "printed": 312
+    },
+    "parties.issuer.address.city": {
+     "printed": 490
+    },
+    "parties.issuer.address.country": {
+     "printed": 490
+    },
+    "parties.issuer.address.line1": {
+     "printed": 485,
+     "not_found": 5
+    },
+    "parties.issuer.address.line2": {
+     "printed": 212
+    },
+    "parties.issuer.address.postal_code": {
+     "printed": 490
+    },
+    "parties.issuer.address.region": {
+     "printed": 259
+    },
+    "parties.issuer.bank.account": {
+     "not_found": 158,
+     "printed": 101
+    },
+    "parties.issuer.bank.bank_name": {
+     "not_found": 297,
+     "printed": 193
+    },
+    "parties.issuer.bank.bic": {
+     "not_found": 139,
+     "printed": 92
+    },
+    "parties.issuer.bank.iban": {
+     "not_found": 139,
+     "printed": 92
+    },
+    "parties.issuer.bank.routing": {
+     "not_found": 158,
+     "printed": 101
+    },
+    "parties.issuer.code": {
+     "printed": 446,
+     "not_found": 44
+    },
+    "parties.issuer.email": {
+     "printed": 360,
+     "not_found": 130
+    },
+    "parties.issuer.name": {
+     "boxed": 490
+    },
+    "parties.issuer.phone": {
+     "printed": 360,
+     "not_found": 130
+    },
+    "parties.issuer.tax_id": {
+     "printed": 490
+    },
+    "parties.issuer.website": {
+     "printed": 360,
+     "not_found": 130
+    },
+    "parties.ship_to.address.city": {
+     "printed": 141
+    },
+    "parties.ship_to.address.country": {
+     "printed": 141
+    },
+    "parties.ship_to.address.line1": {
+     "printed": 139,
+     "not_found": 2
+    },
+    "parties.ship_to.address.postal_code": {
+     "printed": 140
+    },
+    "parties.ship_to.address.region": {
+     "printed": 12
+    },
+    "parties.ship_to.name": {
+     "boxed": 141
+    },
+    "refs.customer_id": {
+     "printed": 490
+    },
+    "refs.order_id": {
+     "printed": 329
+    },
+    "refs.po_number": {
+     "printed": 206
+    },
+    "refs.salesperson": {
+     "not_found": 20,
+     "printed": 138
+    },
+    "totals.currency": {
+     "kept": 490
+    },
+    "totals.discount_total": {
+     "printed": 484,
+     "not_found": 6
+    },
+    "totals.freight": {
+     "printed": 490
+    },
+    "totals.gross": {
+     "printed": 484,
+     "not_found": 6
+    },
+    "totals.subtotal": {
+     "printed": 490
+    },
+    "totals.tax_total": {
+     "printed": 461,
+     "not_found": 29
+    },
+    "totals.taxes[].amount": {
+     "printed": 328
+    },
+    "totals.taxes[].base": {
+     "printed": 284,
+     "not_found": 44
+    },
+    "totals.taxes[].rate": {
+     "printed": 328
+    },
+    "totals.total": {
+     "boxed": 490
+    }
+   }
+  },
+  "purchase_order": {
+   "available_1page": 27123,
+   "available_1page_with_scan": 8131,
+   "clean": 170,
+   "scan": 170,
+   "by_set_company_profile": {
+    "clean / atlas-cycles-plc / None": 10,
+    "clean / boreal-components-co / None": 10,
+    "clean / boreal-wholesale-ltd / None": 10,
+    "clean / cobalt-wholesale-ltd / None": 10,
+    "clean / delta-sports-co-ltd / None": 10,
+    "clean / granite-merchants-llc / None": 10,
+    "clean / harbor-velo-co / None": 10,
+    "clean / iris-distribution-inc / None": 10,
+    "clean / iris-sports-corp / None": 10,
+    "clean / iris-wheelworks-llc / None": 10,
+    "clean / juniper-bikes-plc / None": 10,
+    "clean / juniper-merchants-inc / None": 10,
+    "clean / meridian-components-co-ltd / None": 10,
+    "clean / quarry-foods-plc / None": 10,
+    "clean / summit-partners-ltd / None": 10,
+    "clean / union-foods-corp / None": 10,
+    "clean / vantage-outdoor-corp / None": 10,
+    "scan / atlas-cycles-plc / photo": 5,
+    "scan / atlas-cycles-plc / scan": 5,
+    "scan / boreal-components-co / photo": 5,
+    "scan / boreal-components-co / scan": 5,
+    "scan / boreal-wholesale-ltd / photo": 5,
+    "scan / boreal-wholesale-ltd / scan": 5,
+    "scan / cobalt-wholesale-ltd / photo": 5,
+    "scan / cobalt-wholesale-ltd / scan": 5,
+    "scan / delta-sports-co-ltd / photo": 5,
+    "scan / delta-sports-co-ltd / scan": 5,
+    "scan / granite-merchants-llc / photo": 5,
+    "scan / granite-merchants-llc / scan": 5,
+    "scan / harbor-velo-co / photo": 5,
+    "scan / harbor-velo-co / scan": 5,
+    "scan / iris-distribution-inc / photo": 5,
+    "scan / iris-distribution-inc / scan": 5,
+    "scan / iris-sports-corp / photo": 5,
+    "scan / iris-sports-corp / scan": 5,
+    "scan / iris-wheelworks-llc / photo": 5,
+    "scan / iris-wheelworks-llc / scan": 5,
+    "scan / juniper-bikes-plc / photo": 5,
+    "scan / juniper-bikes-plc / scan": 5,
+    "scan / juniper-merchants-inc / photo": 5,
+    "scan / juniper-merchants-inc / scan": 5,
+    "scan / meridian-components-co-ltd / photo": 5,
+    "scan / meridian-components-co-ltd / scan": 5,
+    "scan / quarry-foods-plc / photo": 5,
+    "scan / quarry-foods-plc / scan": 5,
+    "scan / summit-partners-ltd / photo": 5,
+    "scan / summit-partners-ltd / scan": 5,
+    "scan / union-foods-corp / photo": 5,
+    "scan / union-foods-corp / scan": 5,
+    "scan / vantage-outdoor-corp / photo": 5,
+    "scan / vantage-outdoor-corp / scan": 5
+   },
+   "printed_check": {
+    "currency": {
+     "kept": 340
+    },
+    "dates.delivery_date": {
+     "printed": 332,
+     "printed_wrapped": 8
+    },
+    "doc_type": {
+     "kept": 340
+    },
+    "extra.instructions": {
+     "printed": 316,
+     "prefix": 19,
+     "not_found": 5
+    },
+    "extra.payment_terms": {
+     "printed": 340
+    },
+    "issue_date": {
+     "boxed": 340
+    },
+    "items[].description": {
+     "boxed": 658
+    },
+    "items[].discount_rate": {
+     "not_found": 569,
+     "printed": 89
+    },
+    "items[].extra.category": {
+     "not_found": 348,
+     "printed": 25
+    },
+    "items[].extra.details": {
+     "printed": 44
+    },
+    "items[].extra.due_date": {
+     "not_found": 362
+    },
+    "items[].extra.received": {
+     "printed": 344,
+     "not_found": 18
+    },
+    "items[].extra.rejected": {
+     "printed": 357,
+     "not_found": 5
+    },
+    "items[].extra.stocked": {
+     "printed": 327,
+     "not_found": 35
+    },
+    "items[].extra.weight": {
+     "not_found": 47
+    },
+    "items[].line_total": {
+     "boxed": 658
+    },
+    "items[].quantity": {
+     "printed": 658
+    },
+    "items[].sku": {
+     "printed": 646,
+     "not_found": 12
+    },
+    "items[].tax_rate": {
+     "printed": 658
+    },
+    "items[].unit": {
+     "printed": 362,
+     "not_found": 296
+    },
+    "items[].unit_price": {
+     "printed": 658
+    },
+    "number": {
+     "boxed": 340
+    },
+    "parties.deliver_to.address.city": {
+     "printed": 274
+    },
+    "parties.deliver_to.address.country": {
+     "printed": 274
+    },
+    "parties.deliver_to.address.line1": {
+     "printed": 274
+    },
+    "parties.deliver_to.address.line2": {
+     "printed": 114
+    },
+    "parties.deliver_to.address.postal_code": {
+     "printed": 274
+    },
+    "parties.deliver_to.address.region": {
+     "printed": 142
+    },
+    "parties.deliver_to.name": {
+     "boxed": 274
+    },
+    "parties.deliver_to.phone": {
+     "not_found": 79,
+     "printed": 195
+    },
+    "parties.issuer.address.city": {
+     "printed": 340
+    },
+    "parties.issuer.address.country": {
+     "printed": 340
+    },
+    "parties.issuer.address.line1": {
+     "printed": 339,
+     "not_found": 1
+    },
+    "parties.issuer.address.line2": {
+     "printed": 140
+    },
+    "parties.issuer.address.postal_code": {
+     "printed": 340
+    },
+    "parties.issuer.address.region": {
+     "printed": 180
+    },
+    "parties.issuer.bank.account": {
+     "printed": 50,
+     "not_found": 130
+    },
+    "parties.issuer.bank.bank_name": {
+     "printed": 111,
+     "not_found": 229
+    },
+    "parties.issuer.bank.bic": {
+     "printed": 61,
+     "not_found": 99
+    },
+    "parties.issuer.bank.iban": {
+     "printed": 61,
+     "not_found": 99
+    },
+    "parties.issuer.bank.routing": {
+     "printed": 50,
+     "not_found": 130
+    },
+    "parties.issuer.code": {
+     "printed": 298,
+     "not_found": 42
+    },
+    "parties.issuer.email": {
+     "not_found": 97,
+     "printed": 243
+    },
+    "parties.issuer.name": {
+     "boxed": 340
+    },
+    "parties.issuer.phone": {
+     "not_found": 97,
+     "printed": 243
+    },
+    "parties.issuer.tax_id": {
+     "printed": 340
+    },
+    "parties.issuer.website": {
+     "not_found": 97,
+     "printed": 243
+    },
+    "parties.vendor.address.city": {
+     "printed": 340
+    },
+    "parties.vendor.address.country": {
+     "printed": 340
+    },
+    "parties.vendor.address.line1": {
+     "printed": 337,
+     "not_found": 3
+    },
+    "parties.vendor.address.line2": {
+     "printed": 15
+    },
+    "parties.vendor.address.postal_code": {
+     "printed": 340
+    },
+    "parties.vendor.address.region": {
+     "printed": 218
+    },
+    "parties.vendor.code": {
+     "printed": 340
+    },
+    "parties.vendor.contact": {
+     "not_found": 57,
+     "printed": 103
+    },
+    "parties.vendor.fax": {
+     "not_found": 64
+    },
+    "parties.vendor.name": {
+     "boxed": 340
+    },
+    "parties.vendor.phone": {
+     "not_found": 57,
+     "printed": 103
+    },
+    "refs.account_number": {
+     "printed": 340
+    },
+    "refs.carrier": {
+     "not_found": 76,
+     "printed": 264
+    },
+    "refs.requested_by": {
+     "not_found": 70,
+     "printed": 270
+    },
+    "totals.currency": {
+     "kept": 340
+    },
+    "totals.discount_total": {
+     "printed": 340
+    },
+    "totals.freight": {
+     "printed": 340
+    },
+    "totals.gross": {
+     "printed": 340
+    },
+    "totals.subtotal": {
+     "printed": 340
+    },
+    "totals.tax_total": {
+     "printed": 335,
+     "not_found": 5
+    },
+    "totals.taxes[].amount": {
+     "printed": 312
+    },
+    "totals.taxes[].base": {
+     "printed": 306,
+     "not_found": 6
+    },
+    "totals.taxes[].rate": {
+     "printed": 312
+    },
+    "totals.total": {
+     "boxed": 340
+    }
+   }
+  }
+ }
+}
